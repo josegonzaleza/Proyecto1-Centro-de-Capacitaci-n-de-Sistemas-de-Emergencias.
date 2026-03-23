@@ -194,6 +194,12 @@
     <Content Include="Views\Monitoreo\Riesgo.cshtml" />
     <Content Include="Views\Monitoreo\_IntervencionPendiente.cshtml" />
     <Content Include="Views\Evaluaciones\Create.cshtml" />
+    <Content Include="Views\Catalogos\Cohortes.cshtml" />
+    <Content Include="Views\Catalogos\CreateCohorte.cshtml" />
+    <Content Include="Views\Catalogos\CreateCurso.cshtml" />
+    <Content Include="Views\Catalogos\Cursos.cshtml" />
+    <Content Include="Views\Catalogos\EditCohorte.cshtml" />
+    <Content Include="Views\Catalogos\EditCurso.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

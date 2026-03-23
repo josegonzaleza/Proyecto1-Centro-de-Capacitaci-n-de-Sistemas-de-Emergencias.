@@ -1,0 +1,35 @@
+﻿@model CentroCapacitacionEmergencias.Models.CursoFormViewModel
+@{
+    ViewBag.Title = "Nuevo curso";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <h1>Nuevo curso</h1>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
+        <div class="grid-form">
+            @Html.TextBoxFor(m => m.Codigo, new { @class = "input", placeholder = "Código del curso" })
+            @Html.TextBoxFor(m => m.Titulo, new { @class = "input", placeholder = "Título del curso" })
+            @Html.TextBoxFor(m => m.TotalHorasPracticas, new { @class = "input", type = "number", min = "1", placeholder = "Horas prácticas" })
+        </div>
+
+        <div class="grid-form">
+            <div>
+                <label>Instructores</label>
+                @Html.ListBoxFor(m => m.InstructoresIds, Model.Instructores, new { @class = "input multiselect" })
+            </div>
+            <div>
+                <label>Cohortes</label>
+                @Html.ListBoxFor(m => m.CohortesIds, Model.Cohortes, new { @class = "input multiselect" })
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a class="btn btn-light" href="@Url.Action("Cursos")">Cancelar</a>
+    }
+</div>

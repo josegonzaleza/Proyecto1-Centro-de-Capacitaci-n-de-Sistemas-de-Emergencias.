@@ -1,0 +1,62 @@
+﻿@model List<CentroCapacitacionEmergencias.Models.Curso>
+@using CentroCapacitacionEmergencias.Models
+@{
+    ViewBag.Title = "Cursos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var user = Session["User"] as SessionUser;
+}
+
+<div class="card">
+    <h1>Mantenimiento de Cursos</h1>
+
+    @if (TempData["Ok"] != null)
+    {
+        <div class="alert alert-success">@TempData["Ok"]</div>
+    }
+
+    <div class="actions-bar">
+        <a class="btn btn-light" href="@Url.Action("Cursos", new { verArchivados = false })">Ver activos</a>
+        <a class="btn btn-light" href="@Url.Action("Cursos", new { verArchivados = true })">Ver archivados</a>
+
+        @if (user != null && user.Rol == "Administrador")
+        {
+            <a class="btn btn-success" href="@Url.Action("CreateCurso")">Nuevo curso</a>
+        }
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Título</th>
+                <th>Horas prácticas</th>
+                <th>Archivado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Codigo</td>
+                    <td>@item.Titulo</td>
+                    <td>@item.TotalHorasPracticas</td>
+                    <td>@(item.Archivado ? "Sí" : "No")</td>
+                    <td>
+                        @if (user != null && user.Rol == "Administrador")
+                        {
+                            <a class="btn btn-primary" href="@Url.Action("EditCurso", new { id = item.Id })">Editar</a>
+                            <button type="button" class="btn btn-warning" onclick="toggleArchivadoCursoAjax(@item.Id)">
+                                @(item.Archivado ? "Restaurar" : "Archivar")
+                            </button>
+                        }
+                        else
+                        {
+                            <span class="badge-readonly">Solo lectura</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

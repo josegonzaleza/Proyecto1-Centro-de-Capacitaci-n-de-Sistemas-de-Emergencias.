@@ -1,0 +1,25 @@
+﻿@model CentroCapacitacionEmergencias.Models.CohorteFormViewModel
+@{
+    ViewBag.Title = "Editar cohorte";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <h1>Editar cohorte</h1>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.Id)
+        @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
+        <div class="grid-form">
+            @Html.TextBoxFor(m => m.Nombre, new { @class = "input", placeholder = "Nombre único de la cohorte" })
+            @Html.TextBoxFor(m => m.FechaInicio, "{0:yyyy-MM-dd}", new { @class = "input", type = "date" })
+            @Html.TextBoxFor(m => m.FechaFin, "{0:yyyy-MM-dd}", new { @class = "input", type = "date" })
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        <a class="btn btn-light" href="@Url.Action("Cohortes", new { verArchivados = true })">Cancelar</a>
+    }
+</div>

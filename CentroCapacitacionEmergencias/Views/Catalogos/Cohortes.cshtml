@@ -1,0 +1,63 @@
+﻿@model List<CentroCapacitacionEmergencias.Models.Cohorte>
+@using CentroCapacitacionEmergencias.Models
+@{
+    ViewBag.Title = "Cohortes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var user = Session["User"] as SessionUser;
+    bool verArchivados = ViewBag.VerArchivados != null && (bool)ViewBag.VerArchivados;
+}
+
+<div class="card">
+    <h1>Mantenimiento de Cohortes</h1>
+
+    @if (TempData["Ok"] != null)
+    {
+        <div class="alert alert-success">@TempData["Ok"]</div>
+    }
+
+    <div class="actions-bar">
+        <a class="btn btn-light" href="@Url.Action("Cohortes", new { verArchivados = false })">Ver activas</a>
+        <a class="btn btn-light" href="@Url.Action("Cohortes", new { verArchivados = true })">Ver archivadas</a>
+
+        @if (user != null && user.Rol == "Administrador")
+        {
+            <a class="btn btn-success" href="@Url.Action("CreateCohorte")">Nueva cohorte</a>
+        }
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Inicio</th>
+                <th>Fin</th>
+                <th>Archivado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Nombre</td>
+                    <td>@item.FechaInicio.ToString("yyyy-MM-dd")</td>
+                    <td>@item.FechaFin.ToString("yyyy-MM-dd")</td>
+                    <td>@(item.Archivado ? "Sí" : "No")</td>
+                    <td>
+                        @if (user != null && user.Rol == "Administrador")
+                        {
+                            <a class="btn btn-primary" href="@Url.Action("EditCohorte", new { id = item.Id })">Editar</a>
+                            <button type="button" class="btn btn-warning" onclick="toggleArchivadoCohorteAjax(@item.Id)">
+                                @(item.Archivado ? "Restaurar" : "Archivar")
+                            </button>
+                        }
+                        else
+                        {
+                            <span class="badge-readonly">Solo lectura</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
