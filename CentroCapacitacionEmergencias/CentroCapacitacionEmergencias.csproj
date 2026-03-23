@@ -130,6 +130,7 @@
     <Compile Include="Helpers\JsonConfigHelper.cs" />
     <Compile Include="Helpers\PasswordHelper.cs" />
     <Compile Include="Models\Cohorte.cs" />
+    <Compile Include="Models\CohorteFormViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
