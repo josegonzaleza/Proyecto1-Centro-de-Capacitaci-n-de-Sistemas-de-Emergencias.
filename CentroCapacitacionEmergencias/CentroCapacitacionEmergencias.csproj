@@ -154,6 +154,7 @@
     <Compile Include="Models\SessionUser.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\ParticipanteRepository.cs" />
   </ItemGroup>
   <ItemGroup>
