@@ -1,24 +1,367 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+body {
+    background: #f4f6f9;
+    color: #1f2937;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+.login-body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eaf1f8;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.login-card {
+    width: 420px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+}
+
+    .login-card h1 {
+        font-size: 28px;
+        margin-bottom: 6px;
+    }
+
+    .login-card h2 {
+        font-size: 18px;
+        margin-bottom: 20px;
+        color: #4b5563;
+    }
+
+.topbar {
+    background: #0f172a;
+    color: #fff;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wrapper {
+    display: flex;
+    min-height: calc(100vh - 60px);
+}
+
+.sidebar {
+    width: 240px;
+    background: #1e293b;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+    .sidebar a {
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 12px;
+        border-radius: 8px;
+        background: rgba(255,255,255,.06);
+    }
+
+        .sidebar a:hover {
+            background: rgba(255,255,255,.18);
+        }
+
+.content {
+    flex: 1;
+    padding: 24px;
+}
+
+.card {
+    background: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.08);
+}
+
+    .card h1 {
+        margin-bottom: 18px;
+    }
+
+.form-group,
+.grid-form {
+    margin-bottom: 16px;
+}
+
+.grid-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.multiselect {
+    min-height: 120px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: #fff;
+}
+
+.btn-success {
+    background: #16a34a;
+    color: #fff;
+}
+
+.btn-danger {
+    background: #dc2626;
+    color: #fff;
+}
+
+.btn-light {
+    background: #e5e7eb;
+    color: #111827;
+}
+
+.alert {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.alert-danger {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.text-danger {
+    color: #dc2626;
+    font-size: 12px;
+}
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 18px;
+}
+
+    .table th,
+    .table td {
+        border-bottom: 1px solid #e5e7eb;
+        padding: 12px;
+        text-align: left;
+    }
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.actions-bar {
+    display: flex;
+    gap: 10px;
+    margin: 16px 0;
+    flex-wrap: wrap;
+}
+
+.alert-success {
+    background: #dcfce7;
+    color: #166534;
+}
+.form-section {
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.time-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.helper-text {
+    margin-bottom: 12px;
+    color: #4b5563;
+    font-size: 14px;
+}
+
+.critical-item {
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 12px;
+    background: #f9fafb;
+}
+
+.critical-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.radio-group {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+    .radio-group label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 18px;
+}
+
+    .table th,
+    .table td {
+        border-bottom: 1px solid #e5e7eb;
+        padding: 12px;
+        text-align: left;
+    }
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.actions-bar {
+    display: flex;
+    gap: 10px;
+    margin: 16px 0;
+    flex-wrap: wrap;
+}
+
+.alert-success {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.form-section {
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.time-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.helper-text {
+    margin-bottom: 12px;
+    color: #4b5563;
+    font-size: 14px;
+}
+
+.critical-item {
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 12px;
+    background: #f9fafb;
+}
+
+.critical-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.radio-group {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+    .radio-group label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 20px 0;
+}
+
+.kpi {
+    padding: 18px;
+    border-radius: 12px;
+    color: #fff;
+}
+
+    .kpi span {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+
+    .kpi strong {
+        font-size: 28px;
+    }
+
+    .kpi.semaforo.verde {
+        background: #16a34a;
+    }
+
+    .kpi.semaforo.amarillo {
+        background: #d97706;
+    }
+
+    .kpi.semaforo.rojo {
+        background: #dc2626;
+    }
+
+.risk-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+    .risk-list li {
+        margin-bottom: 8px;
+    }
+
+    .risk-list a {
+        color: #2563eb;
+        text-decoration: none;
+    }
+
+.badge-readonly {
+    display: inline-block;
+    padding: 6px 10px;
+    background: #e5e7eb;
+    color: #374151;
+    border-radius: 999px;
+    font-size: 12px;
+}
+
+.btn-warning {
+    background: #f59e0b;
+    color: #fff;
 }
