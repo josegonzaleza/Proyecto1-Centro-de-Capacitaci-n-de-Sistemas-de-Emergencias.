@@ -1,0 +1,40 @@
+﻿@model List<CentroCapacitacionEmergencias.Models.IntervencionPendienteItem>
+
+@if (Model != null && Model.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Participante</th>
+                <th>Curso</th>
+                <th>Cohorte</th>
+                <th>Horas completadas</th>
+                <th>Horas requeridas</th>
+                <th>% cumplimiento</th>
+                <th>Detalle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CodigoInterno</td>
+                    <td>@item.NombreCompleto</td>
+                    <td>@item.CursoTitulo</td>
+                    <td>@item.CohorteNombre</td>
+                    <td>@item.HorasCompletadas</td>
+                    <td>@item.HorasRequeridas</td>
+                    <td>@item.PorcentajeCumplimiento%</td>
+                    <td>
+                        <a class="btn btn-light" href="@Url.Action("Details", "Participantes", new { id = item.ParticipanteId })">Ver</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No hay participantes en intervención pendiente.</p>
+}

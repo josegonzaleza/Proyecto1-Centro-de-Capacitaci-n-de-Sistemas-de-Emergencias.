@@ -1,0 +1,58 @@
+﻿@model CentroCapacitacionEmergencias.Models.RiesgoDetalleViewModel
+@{
+    ViewBag.Title = "Detalle de riesgo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <h1>Participantes con dificultad en: @Model.DestrezaNombre</h1>
+
+    @if (Model.Participantes != null && Model.Participantes.Count > 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Participante</th>
+                    <th>Identificación</th>
+                    <th>Curso</th>
+                    <th>Cohorte</th>
+                    <th>Último puntaje</th>
+                    <th>Estado dominio</th>
+                    <th>Fecha evaluación</th>
+                    <th>Comentarios</th>
+                    <th>Detalle</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Participantes)
+                {
+                    <tr>
+                        <td>@item.CodigoInterno</td>
+                        <td>@item.NombreCompleto</td>
+                        <td>@item.Identificacion</td>
+                        <td>@item.CursoTitulo</td>
+                        <td>@item.CohorteNombre</td>
+                        <td>@item.UltimoPuntajeFinal</td>
+                        <td>@item.EstadoDominio</td>
+                        <td>@item.FechaEvaluacionTexto</td>
+                        <td>@item.Comentarios</td>
+                        <td>
+                            <a class="btn btn-light" href="@Url.Action("Details", "Participantes", new { id = item.ParticipanteId })">
+                                Ver participante
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No hay participantes con dificultad registrados para esta destreza.</p>
+    }
+
+    <div class="actions-bar">
+        <a class="btn btn-primary" href="@Url.Action("Index", "Monitoreo")">Volver al monitoreo</a>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+﻿@model CentroCapacitacionEmergencias.Models.MonitoreoViewModel
+@{
+    ViewBag.Title = "Monitoreo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <h1>Panel de monitoreo</h1>
+
+    <div class="grid-form">
+        @Html.DropDownListFor(m => m.CohorteId, Model.Cohortes, "Seleccione cohorte", new { @class = "input", id = "cohorteId" })
+        @Html.DropDownListFor(m => m.CursoId, Model.Cursos, "Seleccione curso", new { @class = "input", id = "cursoId" })
+        <button class="btn btn-primary" type="button" onclick="cargarMonitoreo()">Consultar</button>
+    </div>
+
+    <div class="dashboard">
+        <div class="kpi semaforo" id="kpiAprobacion">
+            <span>Tasa global aprobación</span>
+            <strong id="tasaAprobacion">0%</strong>
+        </div>
+        <div class="kpi semaforo" id="kpiCertificacion">
+            <span>Certificados</span>
+            <strong id="estadoCertificacion">0</strong>
+        </div>
+        <div class="kpi semaforo" id="kpiPendiente">
+            <span>Intervención pendiente</span>
+            <strong id="intervencionPendiente">0</strong>
+        </div>
+    </div>
+
+    <h3>Áreas de riesgo</h3>
+    <div id="riesgos">
+        <p>No hay datos cargados.</p>
+    </div>
+
+    <h3>Intervención pendiente</h3>
+    <div id="contenedorIntervencionPendiente">
+        <p>No hay datos cargados.</p>
+    </div>
+</div>

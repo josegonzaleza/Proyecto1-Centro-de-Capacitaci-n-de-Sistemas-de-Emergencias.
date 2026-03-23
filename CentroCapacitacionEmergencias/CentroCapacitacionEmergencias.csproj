@@ -190,6 +190,9 @@
     <Content Include="Views\Participantes\Edit.cshtml" />
     <Content Include="Views\Participantes\Index.cshtml" />
     <Content Include="Views\Participantes\_TablaParticipantes.cshtml" />
+    <Content Include="Views\Monitoreo\Index.cshtml" />
+    <Content Include="Views\Monitoreo\Riesgo.cshtml" />
+    <Content Include="Views\Monitoreo\_IntervencionPendiente.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
