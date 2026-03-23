@@ -147,6 +147,8 @@
     <Compile Include="Models\ParticipanteFormViewModel.cs" />
     <Compile Include="Models\PuntoControlAjaxItem.cs" />
     <Compile Include="Models\RiesgoDetalleViewModel.cs" />
+    <Compile Include="Models\SessionUser.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
