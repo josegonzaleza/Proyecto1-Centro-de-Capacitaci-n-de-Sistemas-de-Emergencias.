@@ -1,0 +1,110 @@
+﻿@model CentroCapacitacionEmergencias.Models.ParticipanteDetalleViewModel
+@using CentroCapacitacionEmergencias.Models
+@{
+    ViewBag.Title = "Detalle participante";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var user = Session["User"] as SessionUser;
+}
+
+<div class="card">
+    <h1>Detalle de participante</h1>
+
+    @if (TempData["Ok"] != null)
+    {
+        <div class="alert alert-success">@TempData["Ok"]</div>
+    }
+
+    <div class="detail-grid">
+        <div><strong>Código interno:</strong> @Model.Participante.CodigoInterno</div>
+        <div><strong>Tipo identificación:</strong> @Model.Participante.TipoIdentificacion</div>
+        <div><strong>Identificación:</strong> @Model.Participante.Identificacion</div>
+        <div><strong>Nombre:</strong> @Model.Participante.NombreCompleto</div>
+        <div><strong>Fecha nacimiento:</strong> @Model.Participante.FechaNacimiento.ToString("yyyy-MM-dd")</div>
+        <div><strong>Correo:</strong> @Model.Participante.Correo</div>
+        <div><strong>Provincia:</strong> @Model.Participante.Provincia</div>
+        <div><strong>Cantón:</strong> @Model.Participante.Canton</div>
+        <div><strong>Distrito:</strong> @Model.Participante.Distrito</div>
+        <div><strong>Dirección:</strong> @Model.Participante.DetalleDireccion</div>
+        <div><strong>Estado civil:</strong> @Model.Participante.EstadoCivil</div>
+        <div><strong>Estado certificación:</strong> @Model.Participante.EstadoCertificacion</div>
+        <div><strong>Teléfono:</strong> @Model.Participante.Telefono</div>
+        <div><strong>Dirección secundaria:</strong> @Model.Participante.DireccionResidenciaSecundaria</div>
+        <div><strong>Contacto emergencia:</strong> @Model.Participante.ContactoEmergencia</div>
+        <div><strong>Cohorte actual:</strong> @Model.CohorteActual</div>
+    </div>
+
+    <div class="actions-bar">
+        @if (user != null && user.Rol == "Administrador")
+        {
+            <a class="btn btn-primary" href="@Url.Action("Edit", new { id = Model.Participante.Id })">Editar participante</a>
+        }
+    </div>
+
+    <h2>Cursos asignados</h2>
+    <div id="cursosAsignadosContainer">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Curso</th>
+                    <th>Estado</th>
+                    @if (user != null && user.Rol == "Administrador")
+                    {
+                        <th>Acción</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var curso in Model.CursosAsignados)
+                {
+                    <tr>
+                        <td>@curso.CursoTitulo</td>
+                        <td>@(curso.Activo ? "Activo" : "Histórico")</td>
+                        @if (user != null && user.Rol == "Administrador")
+                        {
+                            <td>
+                                @if (curso.Activo)
+                                {
+                                    <button type="button" class="btn btn-danger" onclick="removerCursoAjax(@Model.Participante.Id, @curso.CursoId)">Remover</button>
+                                }
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @if (user != null && user.Rol == "Administrador")
+    {
+        <h2>Cambiar cohorte</h2>
+        <div class="grid-form">
+            @Html.DropDownList("NuevaCohorteId", (SelectList)ViewBag.Cohortes, "Seleccione cohorte", new { @class = "input", id = "NuevaCohorteId" })
+            <input type="hidden" id="ParticipanteIdCambioCohorte" value="@Model.Participante.Id" />
+            <button type="button" class="btn btn-warning" onclick="cambiarCohorteAjax()">Cambiar cohorte</button>
+        </div>
+    }
+
+    <h2>Historial de destrezas</h2>
+    @if (Model.HistorialDestrezas != null && Model.HistorialDestrezas.Count > 0)
+    {
+        <ul class="risk-list">
+            @foreach (var item in Model.HistorialDestrezas)
+            {
+                <li>@item</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>No hay historial de evaluaciones registrado.</p>
+    }
+
+    @if (user != null && user.Rol == "Instructor")
+    {
+        <div class="actions-bar">
+            <a class="btn btn-success" href="@Url.Action("Create", "Evaluaciones", new { participanteId = Model.Participante.Id })">
+                Iniciar evaluación
+            </a>
+        </div>
+    }
+</div>

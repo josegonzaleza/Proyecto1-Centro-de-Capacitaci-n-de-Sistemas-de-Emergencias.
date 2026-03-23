@@ -1,0 +1,27 @@
+﻿@model List<CentroCapacitacionEmergencias.Models.Participante>
+@using CentroCapacitacionEmergencias.Models
+@{
+    ViewBag.Title = "Participantes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var user = Session["User"] as SessionUser;
+}
+
+<div class="card">
+    <h1>Registro de participantes</h1>
+
+    <div class="grid-form">
+        <input type="text" id="filtroTexto" class="input" placeholder="Buscar por nombre o cédula" />
+        @Html.DropDownList("filtroCohorte", (SelectList)ViewBag.Cohortes, "Todas las cohortes", new { @class = "input", id = "filtroCohorte" })
+        @Html.DropDownList("filtroCurso", (SelectList)ViewBag.Cursos, "Todos los cursos", new { @class = "input", id = "filtroCurso" })
+        <button type="button" class="btn btn-primary" onclick="buscarParticipantesAjax()">Buscar</button>
+
+        @if (user != null && user.Rol == "Administrador")
+        {
+            <a class="btn btn-success" href="@Url.Action("Create")">Nuevo participante</a>
+        }
+    </div>
+
+    <div id="contenedorParticipantes">
+        @Html.Partial("_TablaParticipantes", Model)
+    </div>
+</div>

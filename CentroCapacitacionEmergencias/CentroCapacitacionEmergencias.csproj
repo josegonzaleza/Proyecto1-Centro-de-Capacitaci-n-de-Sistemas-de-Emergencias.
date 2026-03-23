@@ -185,6 +185,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Participantes\Create.cshtml" />
+    <Content Include="Views\Participantes\Details.cshtml" />
+    <Content Include="Views\Participantes\Edit.cshtml" />
+    <Content Include="Views\Participantes\Index.cshtml" />
+    <Content Include="Views\Participantes\_TablaParticipantes.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

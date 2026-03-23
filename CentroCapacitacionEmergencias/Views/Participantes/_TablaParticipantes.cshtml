@@ -1,0 +1,48 @@
+﻿@model List<CentroCapacitacionEmergencias.Models.Participante>
+@using CentroCapacitacionEmergencias.Models
+@{
+    var user = HttpContext.Current.Session["User"] as SessionUser;
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Identificación</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Estado certificación</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+                <tr id="row_@item.Id">
+                    <td>@item.CodigoInterno</td>
+                    <td>@item.Identificacion</td>
+                    <td>@item.NombreCompleto</td>
+                    <td>@item.Correo</td>
+                    <td>@item.EstadoCertificacion</td>
+                    <td>
+                        <a class="btn btn-light" href="@Url.Action("Details", "Participantes", new { id = item.Id })">Ver</a>
+
+                        @if (user != null && user.Rol == "Administrador")
+                        {
+                            <a class="btn btn-primary" href="@Url.Action("Edit", "Participantes", new { id = item.Id })">Editar</a>
+                            <button type="button" class="btn btn-danger" onclick="desactivarParticipanteAjax(@item.Id)">Desactivar</button>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6">No hay participantes para mostrar.</td>
+            </tr>
+        }
+    </tbody>
+</table>
