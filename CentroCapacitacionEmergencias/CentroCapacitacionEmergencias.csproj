@@ -138,6 +138,7 @@
     <Compile Include="Models\Evaluacion.cs" />
     <Compile Include="Models\EvaluacionViewModel.cs" />
     <Compile Include="Models\IntervencionPendienteItem.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
