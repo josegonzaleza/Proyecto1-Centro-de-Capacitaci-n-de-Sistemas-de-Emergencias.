@@ -159,6 +159,7 @@
     <Compile Include="Repositories\EvaluacionRepository.cs" />
     <Compile Include="Repositories\MonitoreoRepository.cs" />
     <Compile Include="Repositories\ParticipanteRepository.cs" />
+    <Compile Include="Repositories\RiesgoDetalleRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
