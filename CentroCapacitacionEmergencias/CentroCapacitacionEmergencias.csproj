@@ -137,6 +137,7 @@
     <Compile Include="Models\DestrezaAjaxItem.cs" />
     <Compile Include="Models\Evaluacion.cs" />
     <Compile Include="Models\EvaluacionViewModel.cs" />
+    <Compile Include="Models\IntervencionPendienteItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
