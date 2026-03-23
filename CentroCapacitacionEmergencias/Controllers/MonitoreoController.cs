@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using CentroCapacitacionEmergencias.Filters;
 using CentroCapacitacionEmergencias.Models;
@@ -6,10 +7,11 @@ using CentroCapacitacionEmergencias.Repositories;
 
 namespace CentroCapacitacionEmergencias.Controllers
 {
-    [SessionAuthorize("Instructor")]
+    [SessionAuthorize]
     public class MonitoreoController : Controller
     {
         private readonly MonitoreoRepository _repo = new MonitoreoRepository();
+        private readonly CatalogoRepository _catalogoRepo = new CatalogoRepository();
 
         public ActionResult Index()
         {
@@ -17,18 +19,37 @@ namespace CentroCapacitacionEmergencias.Controllers
 
             var vm = new MonitoreoViewModel
             {
-                Cohortes = _repo.GetCohortesDelInstructor(user.Id).Select(x => new SelectListItem
+                Riesgos = new List<RiesgoItem>()
+            };
+
+            if (user.Rol == "Instructor")
+            {
+                vm.Cohortes = _repo.GetCohortesDelInstructor(user.Id).Select(x => new SelectListItem
                 {
                     Value = x.Id.ToString(),
                     Text = x.Nombre
-                }),
-                Cursos = _repo.GetCursosDelInstructor(user.Id).Select(x => new SelectListItem
+                });
+
+                vm.Cursos = _repo.GetCursosDelInstructor(user.Id).Select(x => new SelectListItem
                 {
                     Value = x.Id.ToString(),
                     Text = x.Titulo
-                }),
-                Riesgos = new System.Collections.Generic.List<RiesgoItem>()
-            };
+                });
+            }
+            else
+            {
+                vm.Cohortes = _catalogoRepo.GetCohortes().Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Nombre
+                });
+
+                vm.Cursos = _catalogoRepo.GetCursos().Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Titulo
+                });
+            }
 
             return View(vm);
         }
@@ -38,10 +59,13 @@ namespace CentroCapacitacionEmergencias.Controllers
         {
             var user = (SessionUser)Session["User"];
 
-            if (!_repo.InstructorTieneAcceso(user.Id, cohorteId, cursoId))
+            if (user.Rol == "Instructor" && !_repo.InstructorTieneAcceso(user.Id, cohorteId, cursoId))
+            {
                 return Json(new { ok = false, mensaje = "No autorizado." }, JsonRequestBehavior.AllowGet);
+            }
 
             var data = _repo.GetResumen(cohorteId, cursoId);
+
             return Json(new
             {
                 ok = true,
@@ -57,8 +81,10 @@ namespace CentroCapacitacionEmergencias.Controllers
         {
             var user = (SessionUser)Session["User"];
 
-            if (!_repo.InstructorTieneAcceso(user.Id, cohorteId, cursoId))
-                return PartialView("_IntervencionPendiente", new System.Collections.Generic.List<IntervencionPendienteItem>());
+            if (user.Rol == "Instructor" && !_repo.InstructorTieneAcceso(user.Id, cohorteId, cursoId))
+            {
+                return PartialView("_IntervencionPendiente", new List<IntervencionPendienteItem>());
+            }
 
             var data = _repo.GetIntervencionPendiente(cohorteId, cursoId);
             return PartialView("_IntervencionPendiente", data);
