@@ -132,6 +132,7 @@
     <Compile Include="Models\Cohorte.cs" />
     <Compile Include="Models\CohorteFormViewModel.cs" />
     <Compile Include="Models\Curso.cs" />
+    <Compile Include="Models\CursoFormViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
