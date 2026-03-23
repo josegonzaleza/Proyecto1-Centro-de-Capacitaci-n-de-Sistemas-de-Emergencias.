@@ -140,6 +140,11 @@
     <Compile Include="Models\IntervencionPendienteItem.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\MonitoreoViewModel.cs" />
+    <Compile Include="Models\Participante.cs" />
+    <Compile Include="Models\ParticipanteAsignacion.cs" />
+    <Compile Include="Models\ParticipanteAsignacionAjaxViewModel.cs" />
+    <Compile Include="Models\ParticipanteDetalleViewModel.cs" />
+    <Compile Include="Models\ParticipanteFormViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
