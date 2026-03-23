@@ -157,6 +157,7 @@
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\CatalogoRepository.cs" />
     <Compile Include="Repositories\EvaluacionRepository.cs" />
+    <Compile Include="Repositories\MonitoreoRepository.cs" />
     <Compile Include="Repositories\ParticipanteRepository.cs" />
   </ItemGroup>
   <ItemGroup>
