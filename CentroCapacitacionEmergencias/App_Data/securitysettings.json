@@ -1,0 +1,8 @@
+{
+  "MaxLoginAttempts": 3,
+  "LockMinutes": 15,
+  "HorasPracticasPendientesPorcentaje": 80,
+  "MaximoInstructoresPorCurso": 3,
+  "NotaMaximaSiFallaPuntoCritico": 70,
+  "NotaMinimaAprobacion": 70
+}
