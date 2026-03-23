@@ -133,6 +133,8 @@
     <Compile Include="Models\CohorteFormViewModel.cs" />
     <Compile Include="Models\Curso.cs" />
     <Compile Include="Models\CursoFormViewModel.cs" />
+    <Compile Include="Models\Destreza.cs" />
+    <Compile Include="Models\DestrezaAjaxItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
