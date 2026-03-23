@@ -193,6 +193,7 @@
     <Content Include="Views\Monitoreo\Index.cshtml" />
     <Content Include="Views\Monitoreo\Riesgo.cshtml" />
     <Content Include="Views\Monitoreo\_IntervencionPendiente.cshtml" />
+    <Content Include="Views\Evaluaciones\Create.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
